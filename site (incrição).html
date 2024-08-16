@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrições</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #2a64bb;
+            font-size: 1rem; /* Usando rem para o tamanho da fonte */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #4097d1;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem; /* Usando rem */
+        }
+        nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1a8dc2;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #3674c5;
+        }
+        .menu-hamburguer {
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem; /* Usando rem */
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-hamburguer div {
+            background-color: #fff;
+            height: 3px;
+            margin: 4px 0;
+            width: 25px;
+        }
+        .container {
+            padding: 2rem;
+            flex: 1; /* Permite que o conteúdo principal cresça */
+        }
+        .formulario {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem; /* Espaçamento extra na parte inferior */
+        }
+        .formulario label {
+            display: block;
+            margin-top: 1rem;
+        }
+        .formulario input, .formulario select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem; /* Usando rem */
+        }
+        .formulario button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem; /* Usando rem */
+            transition: background-color 0.3s ease; /* Transição suave */
+        }
+        .formulario button:hover {
+            background-color: #555; /* Cor de fundo ao passar o mouse */
+        }
+        .mensagem-erro {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none; /* Inicialmente escondido */
+        }
+        .mensagem-sucesso {
+            color: green;
+            font-size: 1rem;
+            margin-top: 1rem;
+            display: none; /* Inicialmente escondido */
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Inscrição para Vestibular - CENTRO UNIVERSITÁRIO VERITAS</h1>
+        <div class="menu-hamburguer" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="menu">
+            <a href="#">Início</a>
+            <a href="#">Sobre</a>
+            <a href="#">Cursos</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="formulario">
+            <form id="inscricaoForm">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+
+                <label for="rg">RG:</label>
+                <input type="text" id="rg" name="rg" required>
+
+                <label for="gênero">Gênero:</label>
+                <select id="gênero" name="gênero" required>
+                    <option value="selecione">Selecione seu gênero</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="prefiro não informar">Prefiro não informar</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label for="curso">Selecione seu curso:</label>
+                <select id="curso" name="curso" required>
+                    <option value="">Selecione um curso</option>
+                    <option value="engenharia">Engenharia</option>
+                    <option value="medicina">Medicina</option>
+                    <option value="direito">Direito</option>
+                    <option value="ciencia_computacao">Ciência da Computação</option>
+                    <option value="medicina veterinária">Medicina Veterinária</option>
+                    <option value="Agronomia">Agronomia</option>
+                    <option value="biomedicina">Biomedicina</option>
+                    <option value="fisioterapia">Fisioterapia</option>
+                    <option value="nutrição">Nutrição</option>
+                    <option value="direito">Direito</option>
+                </select>
+
+                <label for="lingua">Língua Estrangeira:</label>
+                <select id="lingua" name="lingua" required>
+                    <option value="selecione">Selecione</option>
+                    <option value="ingles">Inglês</option>
+                    <option value="espanhol">Espanhol</option>
+                </select>
+
+                <div class="mensagem-erro" id="mensagemErro">Por favor, preencha todos os campos corretamente.</div>
+                <div class="mensagem-sucesso" id="mensagemSucesso">Inscrição enviada com sucesso!</div>
+
+                <button type="submit">Enviar Inscrição</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Instituição. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        document.getElementById('inscricaoForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            // Validação personalizada
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const rg = document.getElementById('rg').value;
+            const genero = document.getElementById('gênero').value;
+            const dataNascimento = document.getElementById('data_nascimento').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const curso = document.getElementById('curso').value;
+            const lingua = document.getElementById('lingua').value;
+
+            if (nome && cpf && rg && genero !== 'selecione' && dataNascimento && email && telefone && curso && lingua !== 'selecione') {
+                document.getElementById('mensagemSucesso').style.display = 'block';
+                document.getElementById('mensagemErro').style.display = 'none';
+                // Aqui você pode adicionar a lógica para enviar o formulário, como via AJAX
+            } else {
+                document.getElementById('mensagemErro').style.display = 'block';
+                document.getElementById('mensagemSucesso').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
